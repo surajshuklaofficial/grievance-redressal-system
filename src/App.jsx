@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import bg from "./logos/indiagate.jpg";
+import bg from "./assets/logos/logo3.png";
 
 const App = () => {
   return (
-    <div>
+    <div className="min-h-[300vh]">
       <Navbar />
-      <div className="flexCenter bg_new">
+      <div className="flexCenter bg_ne">
+        <img src={bg} className="imgz" />
       </div>
     </div>
   );
