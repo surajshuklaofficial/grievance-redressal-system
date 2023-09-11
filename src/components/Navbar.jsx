@@ -52,10 +52,10 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-xl hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
               Login
             </button>
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-xl hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
               Register
             </button>
           </div>

@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="min-h-[300vh]">
       <Navbar />
-      <div className="flexCenter bg_ne">
+      <div className="flexCenter bg_ne border-t-[3px] border-green-500">
         <img src={bg} className="imgz" />
       </div>
     </div>
