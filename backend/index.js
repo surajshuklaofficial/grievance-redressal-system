@@ -27,7 +27,7 @@ server.use('/user/auth', authRoutes);
 server.use('/nlp', authentication, nlpRoutes);
 
 // greet route
-server.use('/', (req, res) => {
+server.get('/', (req, res) => {
     res.status(200).send('Welcome to the backend of Grievance management System.');   
 })
 
