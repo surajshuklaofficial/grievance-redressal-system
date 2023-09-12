@@ -25,9 +25,9 @@ const Navbar = () => {
             <span>भारत सरकार</span>Ministry of commerce and industry
           </div>
           <div className="h-8 border-l-2 border-gray-500  relative w-[7vw] text-white-400 flexAround text-[20px]">
-            <FaIcons.FaFacebook className="text-blue-400" />
-            <FaSIcons.FaXTwitter />
-            <FaIcons.FaLinkedin className="text-blue-400 text-2xl" />
+            <FaIcons.FaFacebook className="text-blue-400 cursor-pointer" />
+            <FaSIcons.FaXTwitter className="cursor-pointer" />
+            <FaIcons.FaLinkedin className="text-blue-400 text-2xl cursor-pointer" />
           </div>
         </div>
         <div className="w-[35%] h-full text-white flexCenter text-[14px] relative left-10">
