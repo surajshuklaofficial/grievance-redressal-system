@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
-const Department = mongoose.Schema({
-
+const departmentSchema = mongoose.Schema({
+    department: {type: "string", required: true},
+    complaintCategories: [ String ]
 }) 
 
-export default mongoose.model('Department', Department);
+export default mongoose.model('Department', departmentSchema);
