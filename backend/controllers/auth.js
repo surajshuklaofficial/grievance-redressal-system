@@ -16,11 +16,10 @@ export const signin = async(req, res, next) => {
         user = new User(req.body);
         user.password = bcrypt.hashSync(req.body.password, bcryptRounds);
         const token = jwt.sign(req.body.email, process.env.SECRET_KEY);
-        user.token = token;
         await user.save();
         res.status(201).json({token});
         
-    } catch (err) {
+    } catch (err) { 
         console.log(err);
         res.sendStatus(500);
     }
@@ -39,7 +38,6 @@ export const signup = async (req, res, next) => {
 
         if (isAuth) {
             const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY);
-            user.token = token;
             user.save();
             res.status(200).json({ token });
         } else {

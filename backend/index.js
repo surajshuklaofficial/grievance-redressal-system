@@ -1,8 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
-import { authRoutes } from './routes/index.js';
+import { authRoutes, nlpRoutes } from './routes/index.js';
+import authentication from './middlerware/authentication.js';
 
 dotenv.config();
 
@@ -10,13 +12,19 @@ dotenv.config();
 const server = express();
 
 // built-in middlewares at application level
+server.use(cors())
 server.use(express.json());
 
 // connection with DATABASE
-mongoose.connect(process.env.DB_CONNECT_URL);
+mongoose.connect(process.env.DB_CONNECT_URL)
+    .then(() => console.log('Connected to database.'))
+    .catch(err => console.log(err));
 
 // complainant routes
-server.use('/complainant/auth', authRoutes);
+server.use('/user/auth', authRoutes);
+
+// nlp routes
+server.use('/nlp', authentication, nlpRoutes);
 
 // greet route
 server.use('/', (req, res) => {
