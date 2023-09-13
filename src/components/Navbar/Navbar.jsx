@@ -6,8 +6,10 @@ import logo1 from "../../assets/logos/Logo1.png";
 import Emblem from "../../assets/logos/emblem.png";
 import sficon from "../../assets/logos/logo-poster-1-removebg-preview.png";
 import ChatIcon from "../Chatbot/ChatIcon";
+import Register from "../../container/Register/Register";
 
 const Navbar = () => {
+  const [onLogin, setOnLogin] = useState(false);
   return (
     <nav className="flex flex-col items-center h-[20vh] bg-stone-100 relative">
       <div className="flexBetween bg-[#292929] w-full h-[40%] paddings-navbar overflow-hidden">
