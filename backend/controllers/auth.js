@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 import User from '../models/user.js';
 
-export const signin = async(req, res, next) => {
+export const signup = async(req, res) => {
     const bcryptRounds = 12;
 
     try {
@@ -25,7 +25,7 @@ export const signin = async(req, res, next) => {
     }
 }
 
-export const signup = async (req, res, next) => {
+export const signin = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
 
