@@ -1,4 +1,6 @@
-import authRoutes from './auth.js';
-import nlpRoutes from './NLP.js';
+import authRouter from './auth.js';
+import nlpRouter from './NLP.js';
+import complaintsRouter from './complaint.js';
+import userRouter from './user.js';
 
-export { authRoutes, nlpRoutes };
+export { authRouter, nlpRouter, complaintsRouter, userRouter};

@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export const NLP = (req, res) => {
     console.log(req.body.complaintDescription);
 

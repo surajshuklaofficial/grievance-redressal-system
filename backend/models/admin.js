@@ -6,7 +6,6 @@ const adminSchema = mongoose.Schema({
     lastName: { type: String},
     email: { type: String, required: true, unique: true},
     password: { type: String, required: true},
-    token: { type: String }
 }) 
 
 export default mongoose.model('Admin', adminSchema);
