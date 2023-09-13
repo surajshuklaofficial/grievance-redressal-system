@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as FaSIcons from "react-icons/fa6";
 import dpiit from "../../assets/logos/DPIIT.svg";
@@ -60,7 +60,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <ChatIcon/>
+      <ChatIcon />
     </nav>
   );
 };

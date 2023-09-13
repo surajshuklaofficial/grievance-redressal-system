@@ -11,8 +11,8 @@ import cc from "../../assets/logos/cardcover.jpg";
 
 const Home = () => {
   return (
-    <main className="min-h-[500vh] w-full flex flex-col bg-white relative z-0">
-      <div className="mb-8 border-t-[3.5px] border-green-500 bg-white h-[85vh] shadow-md p-4 flex justify-center pannel-bg">
+    <main className="min-h-[100vh] w-full flex flex-col bg-white relative z-0">
+      <div className="mb-2 border-t-[3.5px] border-green-500 bg-white h-[85vh] shadow-md p-4 flex justify-center pannel-bg">
         <div className="w-[65%] h-full  bg-transparent flex flex-col items-start justify-center gap-6 px-10 py-3">
           <p className="text-7xl font-bold text-[#3A3791] ">
             Empowering Citizens
@@ -76,17 +76,14 @@ const Home = () => {
           {pannelCards.map((card, index) => (
             <div
               key={index}
-              className={`${"w-1/3"} h-[62vh] bg-white p-4 border-[1.5px] border-orange-500 rounded-lg`}
+
+              className={`${"w-1/3"} h-[50vh] bg-white p-4 border-[1.5px] border-orange-500 rounded-lg hover:scale-105 cursor-pointer transition-all`}
             >
-              <img src={card.img} className="h-1/2" />
+              <img src={card.img} className="h-1/2 w-full object-cover bg-center" />
               <span className="flex flex-col items-start justify-center h-1/2 gap-3">
-                <p className="font-semibold text-2xl h-[40%]">{card.title}</p>
-                <p className="h-[40%]">{card.description}</p>
-                <span className="flexCenter w-full h-[20%]">
-                  <button className="bg-orange-500 w-1/2 h-3/4 mt-4 text-white font-semibold rounded-lg ring-orange-500 ring-inset my-2 hover:bg-white hover:text-orange-500 hover:border-[1px] hover:border-orange-500 transition">
-                    {card.tag}
-                  </button>
-                </span>
+                <p className="font-semibold text-2xl h-[50%]">{card.title}</p>
+                <p className="h-[50%]">{card.description}</p>
+                
               </span>
             </div>
           ))}
