@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as FaSIcons from "react-icons/fa6";
 import dpiit from "../../assets/logos/DPIIT.svg";
 import logo1 from "../../assets/logos/Logo1.png";
 import Emblem from "../../assets/logos/emblem.png";
 import sficon from "../../assets/logos/logo-poster-1-removebg-preview.png";
+import ChatIcon from "../Chatbot/ChatIcon";
+import Register from "../../container/Register/Register";
 
 const Navbar = () => {
+  const [onLogin, setOnLogin] = useState(false);
   return (
     <nav className="flex flex-col items-center h-[20vh] bg-stone-100 relative">
       <div className="flexBetween bg-[#292929] w-full h-[40%] paddings-navbar overflow-hidden">
@@ -50,15 +53,16 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
               Login
             </button>
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
               Register
             </button>
           </div>
         </div>
       </div>
+      <ChatIcon />
     </nav>
   );
 };
