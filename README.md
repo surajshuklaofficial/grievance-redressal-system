@@ -2,14 +2,14 @@
 
 
 # auth routes 
-POST /api/v1/auth/signup -> { firstName, lastName, email, contactNumber, password }; { token }
-POST /api/v1/auth/signin -> { email, password }; { token }
+POST /api/v1/user/auth/signup -> { firstName, lastName, email, contactNumber, password }; { token }
+POST /api/v1/user/auth/signin -> { email, password }; { token }
 
 # user routes
-GET /api/v1/user/:userId/profile -> { firstName, lastName, email, contactNumber }
+GET /api/v1/user/profile -> { token in autherization header }, { firstName, lastName, email, contactNumber }
 
 # nlp routes
-POST /api/v1/nlp/listen -> { userInfo, complaintText }; 
+POST /api/v1/nlp/listen -> { userInfo, complaintDescription }; 
                            { departmentId, department, complaintSpecificRequirementslist(use this to create a JSON for complaint)} 
 
 # department auth routes

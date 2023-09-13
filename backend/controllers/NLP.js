@@ -1,11 +1,19 @@
-import mongoose from "mongoose";
+import Department from "../models/department.js";
 
-export const NLP = (req, res) => {
+export const NLP = async (req, res) => {
     console.log(req.body.complaintDescription);
 
-    res.status(200).json([
-        {department: 'Electric', accuracy: 76},
-        {department: 'Water', accuracy: 15},
-        {department: 'Electric', accuracy: 9},
-    ])
+    try {
+
+        const departments = await Department.find();
+        
+        departments[0].accuracy = 90;
+        departments[1].accuracy = 8;
+        departments[2].accuracy = 2;
+        
+        console.log(departments);
+        res.status(200).json(departments);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 }

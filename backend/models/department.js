@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const departmentSchema = mongoose.Schema({
-    department: {type: "string", required: true},
-    complaintSpecificRequirements: [ String ]
+    department: {type: String, required: true},
+    complaintSpecificRequirements: [ String ],
+    accuracy: {type: Number, default: 0}
 }) 
 
 export default mongoose.model('Department', departmentSchema);

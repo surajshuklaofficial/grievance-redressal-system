@@ -4,6 +4,6 @@ import { fetchUserInfo } from '../controllers/user.js';
 
 const router = express.Router();
 
-router.get('/:userId/profile', fetchUserInfo);
+router.get('/profile', fetchUserInfo);
 
 export default router;
