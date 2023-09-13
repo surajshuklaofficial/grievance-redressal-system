@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 
-import { fetchUserInfo } from '../controllers/user.js';
+import { fetchUserInfo } from "../controllers/user.js";
 
 const router = express.Router();
 
-router.get('/profile', fetchUserInfo);
+router.get("/profile", fetchUserInfo);
 
 export default router;
