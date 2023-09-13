@@ -1,15 +1,20 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import "./App.css";
-import bg from "./assets/logos/logo3.png";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home/Home";
 
 const App = () => {
   return (
-    <div className="min-h-[300vh]">
-      <Navbar />
-      <div className="flexCenter bg_ne border-t-[3px] border-green-500">
-        <img src={bg} className="imgz" />
-      </div>
+    <div className="">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/prev" />
+          {/* <Route exact path="/previouscomplaints" element={<Previous />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 };

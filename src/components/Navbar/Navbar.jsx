@@ -1,16 +1,14 @@
 import React from "react";
-import Emblem from "../assets/logos/emblem.png";
-import * as BiIcons from "react-icons/bi";
-import { NavLinks } from "../constants/constant";
-import sficon from "../assets/logos/logo-poster-1-removebg-preview.png";
 import * as FaIcons from "react-icons/fa";
 import * as FaSIcons from "react-icons/fa6";
-import dpiit from "../assets/logos/DPIIT.svg";
-import logo1 from "../assets/logos/Logo1.png";
+import dpiit from "../../assets/logos/DPIIT.svg";
+import logo1 from "../../assets/logos/Logo1.png";
+import Emblem from "../../assets/logos/emblem.png";
+import sficon from "../../assets/logos/logo-poster-1-removebg-preview.png";
 
 const Navbar = () => {
   return (
-    <nav className="flex flex-col items-center h-[20vh] bg-stone-100 ">
+    <nav className="flex flex-col items-center h-[20vh] bg-stone-100 relative">
       <div className="flexBetween bg-[#292929] w-full h-[40%] paddings-navbar overflow-hidden">
         <div className="flexStart  w-[65%] h-auto text-white relative right-[5vw]">
           <div className="h-10 flexCenter w-[18vw]  pad text-[12px] leading-[1.2] ">
@@ -37,7 +35,7 @@ const Navbar = () => {
       <div className="w-full h-[60%] paddings-navbar">
         <div className="flex border-0 border-red-500 h-full py-[10px] overflow-hidden">
           <div className="flexStart gap-5 w-[80%] h-auto">
-            <span className="flexStart gap-3 w-auto">
+            <span className="flexStart gap-3 w-auto overflow-hidden">
               <div className="flexCenter h-[6vh] w-[10vw] mx-4">
                 <img src={logo1} className="w-full h-full" />
               </div>
@@ -52,10 +50,10 @@ const Navbar = () => {
             </span>
           </div>
           <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-xl hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
               Login
             </button>
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-xl hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
+            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
               Register
             </button>
           </div>
