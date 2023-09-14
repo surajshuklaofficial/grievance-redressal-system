@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flexCenter {
+  @apply flex justify-center items-center;
+}
+.flexAround {
+  @apply flex justify-around items-center;
+}
+
+.flexBetween {
+  @apply flex justify-between items-center;
+}
+
+.flexStart {
+  @apply flex items-center justify-start;
+}
+
+.text-small {
+  @apply text-sm font-medium;
+}
+
+.paddings-navbar {
+  @apply lg:px-[7.5vw] py-0 px-5;
+}
+
+.pad {
+  @apply px-[.5vw];
+}
