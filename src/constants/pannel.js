@@ -7,32 +7,24 @@ export const leftpannel = [
     href: "/prev",
   },
   {
-    title: "Previous Complaints",
-    href: "/prev",
+    title: "Under Process Grievances",
+    href: "/process",
   },
   {
-    title: "Previous Complaints",
-    href: "/prev",
+    title: "Pending Requests",
+    href: "/prs",
   },
   {
-    title: "Previous Complaints",
-    href: "/prev",
+    title: "Closed Requests",
+    href: "/closed",
   },
   {
-    title: "Previous Complaints",
-    href: "/prev",
+    title: "Lodge New Appeal",
+    href: "/lna",
   },
   {
-    title: "Previous Complaints",
-    href: "/prev",
-  },
-  {
-    title: "Previous Complaints",
-    href: "/prev",
-  },
-  {
-    title: "Previous Complaints",
-    href: "/prev",
+    title: "Profile",
+    href: "/profile",
   },
 ];
 
@@ -48,7 +40,7 @@ export const rightPannelCards = [
     color: "bg-green-500",
   },
   {
-    icon: 32,
+    icon: false,
     description: "Requests Logged",
     color: "bg-rose-500",
   },
@@ -60,19 +52,19 @@ export const rightPannelNav = [
     href: "/",
   },
   {
-    title: "Home",
-    href: "/",
+    title: "About",
+    href: "/about",
   },
   {
-    title: "Home",
-    href: "/",
+    title: "Lodge Grievance",
+    href: "/ldc",
   },
   {
-    title: "Home",
-    href: "/",
+    title: "View Status",
+    href: "/status",
   },
   {
-    title: "Home",
-    href: "/",
+    title: "Contact",
+    href: "/contact",
   },
 ];

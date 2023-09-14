@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as FaSIcons from "react-icons/fa6";
 import dpiit from "../../assets/logos/DPIIT.svg";
@@ -8,8 +8,7 @@ import sficon from "../../assets/logos/logo-poster-1-removebg-preview.png";
 import ChatIcon from "../Chatbot/ChatIcon";
 import Register from "../../container/Register/Register";
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userInfo } from "../../store/selector/userinfo";
+import userContext from "../../context/userContext";
 
 const Navbar = () => {
   return (
@@ -63,7 +62,7 @@ const Navbar = () => {
 };
 
 function LoginInfo() {
-  const user = useRecoilValue(userInfo);
+  const { user } = useContext(userContext);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -75,7 +74,7 @@ function LoginInfo() {
     return (
       <div className="flexCenter gap-5 w-[30%] font-bold p-2 ">
         <p className="text-orange-500 w-[12vw] h-9 flexCenter tracking-wide gap-2">
-          Namaste! <span>{user.user.firstName}</span>
+          Namaste! <span>{user.firstName}</span>
         </p>
         <button
           onClick={() => logout()}
