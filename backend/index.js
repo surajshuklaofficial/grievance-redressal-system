@@ -36,6 +36,7 @@ server.use("/api/v1/complaints", complaintsRouter);
 // Greet route
 server.use("/api/v1", homepageRouter);
 
-server.listen(process.env.PORT, () => {
-  console.log("listening on port: " + process.env.PORT);
+const port = process.env.PORT || 5050;
+server.listen(port, () => {
+  console.log("listening on port: " + port);
 });
