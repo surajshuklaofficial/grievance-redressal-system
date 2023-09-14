@@ -76,14 +76,18 @@ const Home = () => {
           {pannelCards.map((card, index) => (
             <div
               key={index}
-
+              onClick={()=>{
+                window.location="/profile"
+              }}
               className={`${"w-1/3"} h-[50vh] bg-white p-4 border-[1.5px] border-orange-500 rounded-lg hover:scale-105 cursor-pointer transition-all`}
             >
-              <img src={card.img} className="h-1/2 w-full object-cover bg-center" />
+              <img
+                src={card.img}
+                className="h-1/2 w-full object-cover bg-center"
+              />
               <span className="flex flex-col items-start justify-center h-1/2 gap-3">
                 <p className="font-semibold text-2xl h-[50%]">{card.title}</p>
                 <p className="h-[50%]">{card.description}</p>
-                
               </span>
             </div>
           ))}
