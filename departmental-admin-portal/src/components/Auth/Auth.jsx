@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { login, register } from '../../actions/auth.js';
 
 const Auth = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [registered, setRegistered] = useState(true);
   const [formData, setFormData] = useState({departmentID: "", department: "", password: "", confirmPassword: "", Requirements: "", complaintSpecificRequirements: ""});
 
@@ -32,12 +34,11 @@ const Auth = () => {
     console.log(formData);
 
     if (registered) {
-      dispatch(login(formData));
+      dispatch(login(formData, navigate));
       setFormData({ departmentID: "", department: "", password: "", confirmPassword: ""});
-
     } else {
       if (formData.password === formData.confirmPassword) {
-        dispatch(register(formData));
+        dispatch(register(formData, navigate));
         setFormData({ departmentID: "", department: "", password: "", confirmPassword: ""});
       } else {
         alert("Password and Confirm Password are not matched!")

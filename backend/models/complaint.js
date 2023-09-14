@@ -24,4 +24,4 @@ const complaintSchema = new mongoose.Schema({
   });
   
 
-export default mongoose.model('Complaint', complaintSchema);
+export default mongoose.model("Complaint", complaintSchema);

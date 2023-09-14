@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import Department from '../models/department.js';
+import Department from "../models/department.js";
 import Complaint from '../models/complaint.js';
 
 export const registerNewDepartment = async (req, res) => {

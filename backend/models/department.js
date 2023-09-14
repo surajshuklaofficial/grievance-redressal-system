@@ -7,4 +7,4 @@ const departmentSchema = mongoose.Schema({
     accuracy: {type: Number, default: 0}
 }) 
 
-export default mongoose.model('Department', departmentSchema);
+export default mongoose.model("Department", departmentSchema);

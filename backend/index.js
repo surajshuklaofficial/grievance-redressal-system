@@ -1,10 +1,15 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
 
-import { authRouter, nlpRouter, complaintsRouter, userRouter, departmentRouter } from './routes/index.js';
-import authentication from './middlerware/authentication.js';
+import  {
+  authRouter,
+  nlpRouter,
+  complaintsRouter,
+  userRouter,
+  departmentRouter
+} from "./routes/index.js";
 
 dotenv.config();
 
@@ -12,13 +17,14 @@ dotenv.config();
 const server = express();
 
 // built-in middlewares at application level
-server.use(cors())
+server.use(cors());
 server.use(express.json());
 
 // connection with DATABASE
-mongoose.connect(process.env.DB_CONNECT_URL)
-    .then(() => console.log('Connected to database.'))
-    .catch(err => console.log(err));
+mongoose
+  .connect(process.env.DB_CONNECT_URL)
+  .then(() => console.log("Connected to database."))
+  .catch((err) => console.log(err));
 
 // routes
 server.use('/api/v1/user/auth', authRouter);
@@ -30,6 +36,7 @@ server.use('/api/v1/complaints', complaintsRouter);
 // Greet route
 server.use('/api/v1', (req, res) => res.render('greet'));
 
-server.listen(process.env.PORT, () => {
-    console.log('listening on port: ' + process.env.PORT);   
-}); 
+const port = process.env.PORT || 5050;
+server.listen(port, () => {
+  console.log("listening on port: " + port);
+});

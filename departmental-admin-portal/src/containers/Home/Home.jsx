@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 
 import { Complaints, ComplaintStatusTiles, ComplaintDetails } from "../../components";
@@ -6,8 +6,9 @@ import { fetchComplaintsByDepartmentAndStatus, fetchComplaintsCountByDepartment 
 import { HEROBG } from "../../assets";
 import { RECEIVED } from '../../constants/actionTypes';
 
-const Home = ({ departmentID }) => {
+const Home = () => {
   const dispatch = useDispatch();
+  const [departmentID, setDepartmentID ] = useState(JSON.parse(localStorage.getItem('profile'))?.departmentID);
 
   const bg = {
     backgroundImage: `url(${HEROBG})`,
@@ -16,7 +17,7 @@ const Home = ({ departmentID }) => {
   useEffect(() => {
     dispatch(fetchComplaintsByDepartmentAndStatus(departmentID, RECEIVED));
     dispatch(fetchComplaintsCountByDepartment(departmentID));
-  }, [dispatch, departmentID]);
+  }, [dispatch]);
 
   return (
     <section className="flex justify-between object-cover pb-8" style={bg}>

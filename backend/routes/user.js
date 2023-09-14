@@ -1,9 +1,10 @@
-import express from 'express';
+import express from "express";
 
-import { fetchUserInfo } from '../controllers/user.js';
+import { fetchUserInfo } from "../controllers/user.js";
+import authentication from "../middlerware/authentication.js";
 
 const router = express.Router();
 
-router.get('/profile', fetchUserInfo);
+router.get("/profile", authentication, fetchUserInfo);
 
 export default router;

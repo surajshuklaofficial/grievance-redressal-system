@@ -1,51 +1,60 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 
-import User from '../models/user.js';
+import User from "../models/user.js";
 
-export const signup = async(req, res) => {
-    const bcryptRounds = 12;
+dotenv.config();
 
-    try {
-        let user = await User.findOne({email: req.body.email});
-        if (user) { 
-            res.status(409).json({message: "User already exists"});
-            return;
-        }
+const jwtsecret = process.env.SECRET_KEY;
 
-        user = new User(req.body);
-        user.password = bcrypt.hashSync(req.body.password, bcryptRounds);
-        const token = jwt.sign(req.body.email, process.env.SECRET_KEY);
-        await user.save();
-        res.status(201).json({token});
-        
-    } catch (err) { 
-        console.log(err);
-        res.sendStatus(500);
+const signup = async (req, res, next) => {
+  try {
+    const { firstName, lastName, email, password, contactNumber } = req.body;
+
+    const findUser = await User.findOne({ email });
+    if (findUser) {
+      return res.status(401).json({ message: "User already exists" });
     }
-}
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
 
-export const signin = async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.body.email });
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash,
+      contactNumber,
+    });
 
-        if (!user) {
-            res.status(404).json({ message: "User not found" });
-            return; // Exit the function
-        }
+    const saveUser = await newUser.save();
+    const token = jwt.sign({ email: saveUser.email }, jwtsecret);
+    delete saveUser.password;
 
-        const isAuth = bcrypt.compareSync(req.body.password, user.password);
+    res.status(203).json({ message: "LogIn Created Successfully", token });
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+};
 
-        if (isAuth) {
-            const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY);
-            user.save();
-            res.status(200).json({ token });
-        } else {
-            res.sendStatus(401);
-        }
+const signin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) res.status(403).json({ message: "No such User exists" });
 
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-}
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      res.status(401).json({ message: "Login using correct credentials" });
+
+    const token = jwt.sign({ email: user.email }, jwtsecret);
+    delete user.password;
+
+    res.status(203).json({ message: "Logged In Successfully", token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { signin, signup };

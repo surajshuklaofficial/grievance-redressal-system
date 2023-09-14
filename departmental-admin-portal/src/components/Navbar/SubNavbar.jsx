@@ -7,8 +7,9 @@ const SubNavbar = ({setDepartment}) => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    setDepartment("");
+    setDepartment(null);
     dispatch({type: LOGOUT});
+    window.location.href = '/';
   }
 
   return (
