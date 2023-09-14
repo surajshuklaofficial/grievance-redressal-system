@@ -8,10 +8,12 @@ import AuthForm from "./packages/AuthForm/AuthForm.jsx";
 import axios from "axios";
 import { BASE_URL } from "./config.js";
 import Userstate from "./context/userState.js";
+import Register from "./container/Register/Register.jsx";
+import Login from "./components/Login/Login.jsx";
 
 const App = () => {
   const pathname = window.location.pathname;
-  const checkRoute = pathname === "/form";
+  const checkRoute = pathname === "/register"||pathname==="/login";
   return (
     <div>
       <Userstate>
@@ -20,13 +22,13 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/profile" element={<Page />} />
-            <Route exact path="/form" element={<AuthForm />} />
+            <Route exact path="/signup" element={<Register />} />
+            <Route exact path="/login" element={<Login />} />
           </Routes>
         </Router>
       </Userstate>
     </div>
   );
 };
-
 
 export default App;

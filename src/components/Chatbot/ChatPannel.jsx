@@ -1,11 +1,11 @@
 import React from "react";
 import * as BsIcons from "react-icons/bs";
 import * as IoIcons from "react-icons/io";
-import Message from "./Message";
+import Message from "./message";
 
 const ChatPannel = ({ setChatActive }) => {
   return (
-    <section className="shadow-md w-[28vw] h-[74vh] bg-stone-100 rounded-2xl py-3 px-4 border-2 border-blue-600 z-10 fixed right-[5vw] top-[24vh] overflow-hidden">
+    <section className="shadow-md w-[28vw] h-[74vh] bg-amber-50 rounded-2xl py-3 px-4 border-2 border-blue-600 z-10 fixed right-[5vw] top-[24vh] overflow-hidden">
       <div className="w-full h-[90%]">
         <Message />
       </div>

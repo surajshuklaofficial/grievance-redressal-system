@@ -70,7 +70,7 @@ function LoginInfo() {
     window.location = "/";
   };
 
-  if (user) {
+  if (user.firstName) {
     return (
       <div className="flexCenter gap-5 w-[30%] font-bold p-2 ">
         <p className="text-orange-500 w-[12vw] h-9 flexCenter tracking-wide gap-2">
@@ -87,12 +87,17 @@ function LoginInfo() {
   } else {
     return (
       <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
-        <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
+        <button
+          onClick={() => {
+            window.location = "/login";
+          }}
+          className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] "
+        >
           Login
         </button>
         <button
           onClick={() => {
-            window.location = "/form";
+            window.location = "/signup";
           }}
           className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]"
         >
