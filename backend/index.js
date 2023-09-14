@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import { authRouter, nlpRouter, complaintsRouter, userRouter, homepageRouter } from './routes/index.js';
+import { authRouter, nlpRouter, complaintsRouter, userRouter, departmentRouter } from './routes/index.js';
 import authentication from './middlerware/authentication.js';
 
 dotenv.config();
@@ -24,11 +24,11 @@ mongoose.connect(process.env.DB_CONNECT_URL)
 server.use('/api/v1/user/auth', authRouter);
 server.use('/api/v1/user', userRouter);
 server.use('/api/v1/nlp', nlpRouter);
-// server.use('/api/v1/:department/admin', departmentalDashboardRouter);
+server.use('/api/v1/department', departmentRouter);
 server.use('/api/v1/complaints', complaintsRouter);
 
 // Greet route
-server.use('/api/v1', homepageRouter);
+server.use('/api/v1', (req, res) => res.render('greet'));
 
 server.listen(process.env.PORT, () => {
     console.log('listening on port: ' + process.env.PORT);   

@@ -13,11 +13,11 @@ POST /api/v1/nlp/listen -> { userInfo, complaintDescription };
                            { departmentId, department, complaintSpecificRequirementslist(use this to create a JSON for complaint)} 
 
 # department auth routes
-POST /api/v1/:department/admin/auth/signup -> { firstName, lastName, email, contactNumber }; { token}
-POST /api/v1/:department/admin/auth/signin -> { email, password }; { token }
+POST /api/v1/department/auth/admin/register -> { department, complaintSpecificRequirements, password }; { token}
+POST /api/v1/department/auth/admin/login -> { departmentID, password }; { token }
 
 # department routes
-GET /api/v1/:department/admin/dashboard -> { all complaints by department }
+GET /api/v1/department/:departmentID/admin/dashboard/complaints -> { all complaints by department }
 
 # complaints routes
 POST /api/v1/complaints/send -> { send complaints to concerned department }; 
