@@ -1,24 +1,31 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Complaints, ComplaintStatusTiles, ComplaintDetails } from "../../components";
-import { fetchComplaintsByDepartment } from "../../actions/complaints";
+import { fetchComplaintsByDepartmentAndStatus, fetchComplaintsCountByDepartment } from "../../actions/complaints";
+import { HEROBG } from "../../assets";
+import { RECEIVED } from '../../constants/actionTypes';
 
 const Home = ({ departmentID }) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.complaints.data) || [1];
+
+  const bg = {
+    backgroundImage: `url(${HEROBG})`,
+  }
 
   useEffect(() => {
-    dispatch(fetchComplaintsByDepartment(departmentID));
+    dispatch(fetchComplaintsByDepartmentAndStatus(departmentID, RECEIVED));
+    dispatch(fetchComplaintsCountByDepartment(departmentID));
   }, [dispatch, departmentID]);
 
   return (
-    <section className="flex justify-between">
-      <div className="w-1/2 flex flex-col">
-        <ComplaintStatusTiles data={data}/>
-        <ComplaintDetails complaint={data[0]}/>
+    <section className="flex justify-between object-cover pb-8" style={bg}>
+      
+      <div className="w-2/3 flex flex-col">
+        <ComplaintStatusTiles />
+        <ComplaintDetails />
       </div>
-      <Complaints data={data} />
+      <Complaints />
     </section>
   )
 }

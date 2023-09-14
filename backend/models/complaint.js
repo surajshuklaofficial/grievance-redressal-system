@@ -8,8 +8,8 @@ const complaintSchema = new mongoose.Schema({
     complainantComplaintSpecificInfo: Object, // Dynamic data based on department's needs to resolve the problem
     resolutionStatus: {
       type: String,
-      enum: ['Received', 'In Progress', 'Closed'],
-      default: 'Received'
+      enum: ['RECEIVED', 'INPROGRESS', 'CLOSED'],
+      default: 'RECEIVED',
     },
     timestamps: {
       createdAt: { type: Date, default: Date.now },
@@ -18,8 +18,8 @@ const complaintSchema = new mongoose.Schema({
     realTimeStatus: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ComplaintState' }],
     urgency: {
       type: String,
-      enum: ['Low', 'Medium', 'High'],
-      default: 'Low'
+      enum: ['LOW', 'MEDIUM', 'HIGH'],
+      default: 'LOW'
     },
   });
   

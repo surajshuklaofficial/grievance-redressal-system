@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const ComplaintDetails = ({ complaint }) => {
+const ComplaintDetails = () => {
+
+  const complaint = useSelector((state) => state?.complaints?.selected_complaint);
+
   return (
-    <div className="bg-[#181818] p-3 rounded-lg shadow-lg ml-6">
-      <h2 className="text-2xl font-semibold text-white mb-4">Complaint Details</h2>
+    <div className="bg-[#181818] p-3 rounded-lg shadow-lg mx-6">
+      <h2 className="text-2xl font-semibold text-white mb-4">Complaint Details - {complaint?.resolutionStatus}</h2>
 
       <div className="flex flex-wrap items-center">
         <div className="w-full md:w-1/2 lg:w-1/3 p-2">

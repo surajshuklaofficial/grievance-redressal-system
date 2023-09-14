@@ -54,9 +54,21 @@ export const loginDepartment = async (req, res) => {
 export const fetchComplaintsByDepartment = async (req, res) => {
     try {
         
-        const complaints = await Complaint.find({ departmentId: req.params.departmentID }).sort({ "timestamps.createdAt": 1 });
-        console.log(complaints);
+        const complaints = await Complaint.find({ departmentId: req.params.departmentID, resolutionStatus: req.query.status }).sort({ "timestamps.createdAt": 1 });
         res.status(200).json(complaints);
+    } catch (error) {
+        console.error('Error fetching complaints:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const fetchComplaintsCountByDepartment = async (req, res) => {
+    try {
+        
+        const RECEIVED_COUNT = await Complaint.countDocuments({ departmentId: req.params.departmentID, resolutionStatus: 'RECEIVED' });
+        const INPROGRESS_COUNT = await Complaint.countDocuments({ departmentId: req.params.departmentID, resolutionStatus: 'INPROGRESS' });
+        const CLOSED_COUNT = await Complaint.countDocuments({ departmentId: req.params.departmentID, resolutionStatus: 'CLOSED' });
+        res.status(200).json({RECEIVED_COUNT, INPROGRESS_COUNT, CLOSED_COUNT});
     } catch (error) {
         console.error('Error fetching complaints:', error);
         res.status(500).json({ error: 'Internal Server Error' });
