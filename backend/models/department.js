@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const departmentSchema = mongoose.Schema({
   department: { type: String, required: true },
@@ -6,4 +6,5 @@ const departmentSchema = mongoose.Schema({
   accuracy: { type: Number, default: 0 },
 });
 
-export default mongoose.model("Department", departmentSchema);
+const Department = mongoose.model("Department", departmentSchema);
+module.exports = Department;

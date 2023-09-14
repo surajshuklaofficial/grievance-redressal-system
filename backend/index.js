@@ -1,16 +1,15 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cors from "cors";
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
-import {
+const {
   authRouter,
   nlpRouter,
   complaintsRouter,
   userRouter,
   homepageRouter,
-} from "./routes/index.js";
-import authentication from "./middlerware/authentication.js";
+} = require("./routes/index.js");
 
 dotenv.config();
 

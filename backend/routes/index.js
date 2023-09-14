@@ -1,8 +1,13 @@
-import authRouter from './auth.js';
-import nlpRouter from './NLP.js';
-import complaintsRouter from './complaint.js';
-import userRouter from './user.js';
-// import departmentalDashboardRouter from './department.js';
-import homepageRouter from './homepage.js';
+const authRouter = require("./auth.js");
+const nlpRouter = require("./NLP.js");
+const complaintsRouter = require("./complaint.js");
+const userRouter = require("./user.js");
+const homepageRouter = require("./homepage.js");
 
-export { authRouter, nlpRouter, complaintsRouter, userRouter, homepageRouter};
+module.exports = {
+  authRouter,
+  nlpRouter,
+  complaintsRouter,
+  userRouter,
+  homepageRouter,
+};

@@ -1,49 +1,62 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
+const User = require("../models/user");
 
-import User from "../models/user.js";
+dotenv.config();
 
-export const signup = async (req, res, next) => {
-  const bcryptRounds = 12;
+const jwtsecret = process.env.SECRET_KEY;
 
+const signup = async (req, res, next) => {
   try {
-    let user = await User.findOne({ email: req.body.email });
-    if (user) {
-      res.status(409).json({ message: "User already exists" });
-      return;
-    }
+    const { firstName, lastName, email, password, contactNumber } = req.body;
 
-    user = new User(req.body);
-    user.password = bcrypt.hashSync(req.body.password, bcryptRounds);
-    const token = jwt.sign(req.body.email, process.env.SECRET_KEY);
-    await user.save();
-    res.status(201).json({ token });
+    const findUser = await User.findOne({ email });
+    if (findUser) {
+      return res.status(401).json({ message: "User already exists" });
+    }
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash,
+      contactNumber,
+    });
+
+    const saveUser = await newUser.save();
+    const token = jwt.sign({ email: saveUser.email }, jwtsecret);
+    delete saveUser.password;
+
+    res.status(203).json({ message: "LogIn Created Successfully", token });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
 };
 
-export const signin = async (req, res, next) => {
+const signin = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) res.status(403).json({ message: "No such User exists" });
 
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return; // Exit the function
-    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      res.status(401).json({ message: "Login using correct credentials" });
 
-    const isAuth = bcrypt.compareSync(req.body.password, user.password);
+    const token = jwt.sign({ email: user.email }, jwtsecret);
+    delete user.password;
 
-    if (isAuth) {
-      const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY);
-      user.save();
-      res.status(200).json({ token });
-    } else {
-      res.sendStatus(401);
-    }
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
+    res.status(203).json({ message: "Logged In Successfully", token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
+};
+
+module.exports = {
+  signin,
+  signup,
 };

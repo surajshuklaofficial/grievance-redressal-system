@@ -1,25 +1,27 @@
-import { rmSync } from "fs";
-import Complaint from "../models/complaint.js";
-import Department from "../models/department.js";
-import User from "../models/user.js";
+const Complaint = require("../models/complaint.js");
+const Department = require("../models/department.js");
+const User = require("../models/user.js");
 
-export const sendComplaint = async (req, res) => {
+const sendComplaint = async (req, res) => {
   try {
     const { department, complaintDescription } = req.body;
     const newdepartment = await Department.findOne({ department });
     const departmentId = newdepartment._id;
+    console.log("auth", req.user);
 
     const user = await User.findOne({ email: req.user.email });
+    console.log(user);
 
     const newComplaint = new Complaint({
       departmentId,
-      userId: user._id,
+      userId: user._Id,
       department,
       complaintDescription,
     });
 
     await newComplaint.save();
-    await user.complaints.push(newComplaint._id);
+    user.complaints.push(newComplaint._id);
+    await user.save();
     res.status(202).json(newComplaint);
   } catch (error) {
     console.error("Error saving complaint:", error);
@@ -27,7 +29,7 @@ export const sendComplaint = async (req, res) => {
   }
 };
 
-export const fetchComplaints = async (req, res) => {
+const fetchComplaints = async (req, res) => {
   try {
     const complaints = await Complaint.find({
       departmentId: req.params.departmentID,
@@ -39,7 +41,7 @@ export const fetchComplaints = async (req, res) => {
   }
 };
 
-export const getAComplaint = async (req, res) => {
+const getAComplaint = async (req, res) => {
   try {
     const complaintId = req.params.complaintId;
     const complaint = await Complaint.findOne({ _id: complaintId });
@@ -48,4 +50,10 @@ export const getAComplaint = async (req, res) => {
     console.error("Error fetching complaints:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+};
+
+module.exports = {
+  sendComplaint,
+  fetchComplaints,
+  getAComplaint,
 };

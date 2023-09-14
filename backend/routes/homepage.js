@@ -1,9 +1,9 @@
-import express from "express";
-import { greet, addNewDepartment } from "../controllers/department.js";
+const express = require("express");
+const { greet, addNewDepartment } = require("../controllers/department.js");
 
 const router = express.Router();
 
-router.get('/', greet)
-    .post('/add-new-department', addNewDepartment);
+router.get("/", greet);
+router.post("/add-new-department", addNewDepartment);
 
-export default router;
+module.exports = router;

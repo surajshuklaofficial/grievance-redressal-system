@@ -1,9 +1,10 @@
-import express from "express";
+const express = require("express");
 
-import { fetchUserInfo } from "../controllers/user.js";
+const { fetchUserInfo } = require("../controllers/user.js");
+const authentication = require("../middlerware/authentication.js");
 
 const router = express.Router();
 
-router.get("/profile", fetchUserInfo);
+router.get("/profile", authentication, fetchUserInfo);
 
-export default router;
+module.exports = router;

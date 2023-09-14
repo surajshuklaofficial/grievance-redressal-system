@@ -1,9 +1,9 @@
-import express from 'express';
+const express = require("express");
 
-import { NLP } from '../controllers/NLP.js';
+const NLP = require("../controllers/NLP.js");
 
 const router = express.Router();
 
-router.post('/listen', NLP);
+router.post("/listen", NLP);
 
-export default router;
+module.exports = router;
