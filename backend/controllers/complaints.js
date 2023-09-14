@@ -52,8 +52,31 @@ const getAComplaint = async (req, res) => {
   }
 };
 
+const getComplaintDetails = async (req, res) => {
+  try {
+    const userEmail = req.user.email;
+    const user = await User.findOne({ email: userEmail });
+    const complaints_id_array = user.complaints;
+
+    // Use Promise.all to wait for all promises to resolve
+    const details = await Promise.all(
+      complaints_id_array.map(async (id) => {
+        console.log("Fetching complaint:", id);
+        const cd = await Complaint.findOne({ _id: id });
+        return cd;
+      })
+    );
+
+    res.json(details);
+  } catch (error) {
+    console.error("Error fetching complaints:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   sendComplaint,
   fetchComplaints,
   getAComplaint,
+  getComplaintDetails,
 };
