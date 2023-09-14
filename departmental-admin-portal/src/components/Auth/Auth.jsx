@@ -7,14 +7,30 @@ const Auth = () => {
 
   const dispatch = useDispatch();
   const [registered, setRegistered] = useState(true);
-  const [formData, setFormData] = useState({departmentID: "", department: "", password: "", confirmPassword: ""});
+  const [formData, setFormData] = useState({departmentID: "", department: "", password: "", confirmPassword: "", Requirements: "", complaintSpecificRequirements: ""});
 
   const handleFieldChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  const handleRequirementsOptimisation = () => {
+    const optimisedRequirements = formData.complaintSpecificRequirements
+    ? formData.complaintSpecificRequirements.split(",").map(item => item.trim())
+    : [];
+
+    console.log("Before setting formData:", optimisedRequirements); // Add this line
+
+    setFormData(prevState => ({
+      ...prevState,
+      complaintSpecificRequirements: optimisedRequirements,
+    }));
+  }
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    handleRequirementsOptimisation();
+    console.log(formData);
+
     if (registered) {
       dispatch(login(formData));
       setFormData({ departmentID: "", department: "", password: "", confirmPassword: ""});
@@ -27,6 +43,7 @@ const Auth = () => {
         alert("Password and Confirm Password are not matched!")
       }
     }
+    console.log(formData);
   }
 
   return (
@@ -44,6 +61,21 @@ const Auth = () => {
           onChange={handleFieldChange}
           required
         />
+                
+                
+        {!registered && (
+          <>
+            <label className="block mt-4 mb-2 text-sm">Parameters:</label>
+            <input
+              className="w-full py-2 px-4 bg-[#303030] border border-[#FF6347] text-white rounded-md focus:outline-none focus:ring focus:border-[#FF6347]"
+              type="text"
+              name="Requirements"
+              placeholder="Enter Parameters (e.g., param1, param2, param3)"
+              value={formData.Requirements}
+              onChange={handleFieldChange}
+            />
+          </>
+        )}
 
         <label className="block mt-4 mb-2 text-sm">Password:</label>
         <input

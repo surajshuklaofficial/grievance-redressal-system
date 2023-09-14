@@ -1,17 +1,24 @@
-import { Navbar, Auth } from './components';
+import { useState } from 'react';
+
+import { Navbar, Auth, Sidebar } from './components';
 import { Home } from './containers';
 
 const App = () => {
 
+    const [ sidebar, setSidebar] = useState(false);
     
     const departmentID = JSON.parse(localStorage.getItem('profile'))?.departmentID || 0;
-    console.log(departmentID);
-
+    
     return (
-        <>
-            <Navbar />
-            { !departmentID ? <Auth /> : <Home departmentID = {departmentID}/>}
-        </>
+        <section className=''>  
+            <div className=''>
+                <Navbar setSidebar={setSidebar} />
+                { !departmentID ? <Auth /> : <Home departmentID = {departmentID}/>}
+            </div>
+
+            { sidebar && <Sidebar sidebar={sidebar} setSidebar={setSidebar}/> }
+
+        </section>
     )   
 }
 

@@ -2,6 +2,7 @@ import Navbar from './Navbar/Navbar';
 import Auth from './Auth/Auth';
 import Complaints from './Complaints/Complaints';
 import ComplaintStatusTiles from './ComplaintStatusTiles/ComplaintStatusTiles';
-import ComplaintInfo from './ComplaintInfo/ComplaintInfo';
+import ComplaintDetails from './ComplaintDetails/ComplaintDetails';
+import Sidebar from './Sidebar/Sidebar';
 
-export { Navbar, Auth, Complaints, ComplaintStatusTiles, ComplaintInfo };
+export { Navbar, Auth, Complaints, ComplaintStatusTiles, ComplaintDetails, Sidebar };

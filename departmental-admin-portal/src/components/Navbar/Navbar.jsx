@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { GOVERNMENTOFINDIA, USERLOGO } from '../../assets';
 
-const Navbar = () => {
+const Navbar = ({setSidebar}) => {
 
   const user = useSelector((state => state.auth));
   
@@ -18,7 +18,7 @@ const Navbar = () => {
           <p className='text-xs'>Ministry of Housing and Urban Affairs</p>
         </div>
       </div>
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-4' onClick={() => setSidebar(prevState => !prevState)}>
         <img className='w-9' src={USERLOGO} alt='User Logo'/>
         <h3 className='text-lg font-semibold'>Grievance Admin Portal</h3>
       </div>

@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-const ComplaintList = () => {
-  const complaints = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Replace with your actual complaints data
+const ComplaintList = ({data}) => {
+
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    // Update the complaints state when data changes
+    setComplaints(data);
+  }, [data]); // Add data as a dependency for the useEffect
 
   return (
-    <div className="w-2/5 h-[660px] mt-6 p-6 bg-[#181818] text-white rounded-lg shadow-lg overflow-y-auto">
+    <div className="w-2/5 h-[660px] mt-6 mr-6 p-6 bg-[#181818] text-white rounded-lg shadow-lg overflow-y-auto">
       <h2 className="text-xl font-semibold text-center">Complaint List</h2>
 
-      {complaints.map((complaint) => (
-        <div key={complaint} className="mt-3 p-3 border border-[#FF6347] rounded-lg">
-          {/* Display complaint details here */}
-          <p>Complaint ID: {complaint}</p>
-          <p>Description: {`Description for complaint ${complaint}`}</p>
+      {complaints.map((complaint, index) => (
+        <div key={index} className="mt-3 p-3 border border-[#FF6347] rounded-lg">
+          <p>Complaint ID: {complaint?._id}</p>
+          <p>Description: {complaint?.complaintDescription}</p>
           {/* Add more complaint details as needed */}
         </div>
       ))}

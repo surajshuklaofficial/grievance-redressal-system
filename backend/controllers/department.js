@@ -55,6 +55,7 @@ export const fetchComplaintsByDepartment = async (req, res) => {
     try {
         
         const complaints = await Complaint.find({ departmentId: req.params.departmentID }).sort({ "timestamps.createdAt": 1 });
+        console.log(complaints);
         res.status(200).json(complaints);
     } catch (error) {
         console.error('Error fetching complaints:', error);
