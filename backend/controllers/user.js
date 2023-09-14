@@ -1,16 +1,15 @@
-import jwt from 'jsonwebtoken';
+const User = require("../models/user");
 
-import User from '../models/user.js';
+const fetchUserInfo = async (req, res) => {
+  try {
+    const email = req.user.email;
+    const user = await User.findOne({email});
+    return res.status(200).json({ user });
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+};
 
-export const fetchUserInfo = async (req, res) => {
-
-    try {
-
-        const token = req.headers.authorization.split(' ')[1]; 
-        const { email } = jwt.decode(token, process.env.SECRET_KEY);
-        const user = await User.findOne({ email });
-        res.status(200).json({ userId: user._id, firstname: user.firstName, lastName: user.lastName, email: email, contactNumber: user.contactNumber});
-    } catch (err) {
-        res.status(400).json({ error: err });
-    }
-}
+module.exports = {
+  fetchUserInfo,
+};

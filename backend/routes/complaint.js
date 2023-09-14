@@ -1,10 +1,18 @@
-import express from 'express';
+const express = require("express");
 
-import { sendComplaint, fetchComplaints } from '../controllers/complaints.js';
+const {
+  sendComplaint,
+  fetchComplaints,
+  getAComplaint,
+  getComplaintDetails,
+} = require("../controllers/complaints.js");
+const authentication = require("../middlerware/authentication.js");
 
 const router = express.Router();
 
-router.post('/send', sendComplaint)
-    .get('/:departmentID/dashboard', fetchComplaints);
+router.post("/send", authentication, sendComplaint);
+router.get("/complaintdetails", authentication, getComplaintDetails);
+router.get("/:complaintId", authentication, getAComplaint);
+router.get("/:departmentID/dashboard", authentication, fetchComplaints);
 
-export default router;
+module.exports = router;
