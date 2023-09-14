@@ -33,8 +33,9 @@ server.use('/api/v1/nlp', nlpRouter);
 server.use('/api/v1/department', departmentRouter);
 server.use('/api/v1/complaints', complaintsRouter);
 
-// Greet route
-server.use('/api/v1', (req, res) => res.render('greet'));
+// Greet routes
+server.use('/api/v1', (req, res) => res.send("Version-1 of Greivance Redressal Central Server is deployed"));
+server.use('/', (req, res) => res.send("Welcome to Greivance Redressal Central Server!"));
 
 const port = process.env.PORT || 5050;
 server.listen(port, () => {
