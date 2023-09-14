@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 
-import { Complaints, ComplaintStatusTiles } from "../../components";
+import { Complaints, ComplaintStatusTiles, ComplaintInfo } from "../../components";
 import { fetchComplaintsByDepartment } from "../../actions/complaints";
 
 const Home = ( { departmentID }) => {
@@ -14,8 +14,9 @@ const Home = ( { departmentID }) => {
 
   return (
     <section className="flex justify-between">
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-col">
           <ComplaintStatusTiles />
+          <ComplaintInfo />
         </div>
         <Complaints />
     </section>
