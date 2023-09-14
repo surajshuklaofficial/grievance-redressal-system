@@ -7,9 +7,11 @@ import Emblem from "../../assets/logos/emblem.png";
 import sficon from "../../assets/logos/logo-poster-1-removebg-preview.png";
 import ChatIcon from "../Chatbot/ChatIcon";
 import Register from "../../container/Register/Register";
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "../../store/selector/userinfo";
 
 const Navbar = () => {
-  const [onLogin, setOnLogin] = useState(false);
   return (
     <nav className="flex flex-col items-center h-[20vh] bg-stone-100 relative">
       <div className="flexBetween bg-[#292929] w-full h-[40%] paddings-navbar overflow-hidden">
@@ -52,19 +54,54 @@ const Navbar = () => {
               </div>
             </span>
           </div>
-          <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
-              Login
-            </button>
-            <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]">
-              Register
-            </button>
-          </div>
+          <LoginInfo />
         </div>
       </div>
       <ChatIcon />
     </nav>
   );
 };
+
+function LoginInfo() {
+  const user = useRecoilValue(userInfo);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    alert("Logged Out Successfully");
+    window.location = "/";
+  };
+
+  if (user) {
+    return (
+      <div className="flexCenter gap-5 w-[30%] font-bold p-2 ">
+        <p className="text-orange-500 w-[12vw] h-9 flexCenter tracking-wide gap-2">
+          Namaste! <span>{user.user.firstName}</span>
+        </p>
+        <button
+          onClick={() => logout()}
+          className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]"
+        >
+          Logout
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flexCenter gap-5 w-[20%] font-bold p-2 ">
+        <button className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E] ">
+          Login
+        </button>
+        <button
+          onClick={() => {
+            window.location = "/form";
+          }}
+          className="text-white cursor-pointer bg-[#FA5F1E] w-[7vw] h-9 flexCenter rounded-[30px] shadow-md hover:text-[#FA5F1E] transition hover:bg-white hover:border-[1px] hover:border-[#FA5F1E]"
+        >
+          Register
+        </button>
+      </div>
+    );
+  }
+}
 
 export default Navbar;
