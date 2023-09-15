@@ -4,6 +4,8 @@ import User from "../models/user.js";
 
 const sendComplaint = async (req, res) => {
   try {
+
+    console.log(req.body);
     const newComplaint = new Complaint(req.body);
     await newComplaint.save();
     res.status(202).json(newComplaint);
