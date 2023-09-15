@@ -4,24 +4,8 @@ import User from "../models/user.js";
 
 const sendComplaint = async (req, res) => {
   try {
-    const { department, complaintDescription } = req.body;
-    const newdepartment = await Department.findOne({ department });
-    const departmentId = newdepartment._id;
-    console.log("auth", req.user);
-
-    const user = await User.findOne({ email: req.user.email });
-    console.log(user);
-
-    const newComplaint = new Complaint({
-      departmentId,
-      userId: user._Id,
-      department,
-      complaintDescription,
-    });
-
+    const newComplaint = new Complaint(req.body);
     await newComplaint.save();
-    user.complaints.push(newComplaint._id);
-    await user.save();
     res.status(202).json(newComplaint);
   } catch (error) {
     console.error("Error saving complaint:", error);
