@@ -11,3 +11,5 @@ export const UPDATE_COMPLAINT_LIST = 'UPDATE_COMPLAINT_LIST';
 export const RECEIVED = 'RECEIVED';
 export const CLOSED = 'CLOSED';
 export const INPROGRESS = 'INPROGRESS';
+
+export const FETCH_ALL_RESOLVER = 'FETCH_ALL_RESOLVER';

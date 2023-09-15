@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { Complaints, ComplaintStatusTiles, ComplaintDetails } from "../../components";
 import { fetchComplaintsByDepartmentAndStatus, fetchComplaintsCountByDepartment } from "../../actions/complaints";
+import { fetchResolvers } from '../../actions/resolver.js';
+
 import { HEROBG } from "../../assets";
 import { RECEIVED } from '../../constants/actionTypes';
 
@@ -17,6 +19,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchComplaintsByDepartmentAndStatus(departmentID, RECEIVED));
     dispatch(fetchComplaintsCountByDepartment(departmentID));
+    dispatch(fetchResolvers());
   }, [dispatch]);
 
   return (

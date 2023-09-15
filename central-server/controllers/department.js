@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 
 import Department from "../models/department.js";
 import Complaint from '../models/complaint.js';
+import Resolver from '../models/resolver.js';
 
 export const registerNewDepartment = async (req, res) => {
     const bcryptRounds = 12;
@@ -75,3 +76,12 @@ export const fetchComplaintsCountByDepartment = async (req, res) => {
     }
 }
 
+export const fetchResolvers = async (req, res) => {
+    try {
+        const resolvers = await Resolver.find();
+        res.status(200).json(resolvers);
+    } catch (error) {
+        console.error('Error fetching complaints:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}

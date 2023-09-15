@@ -1,9 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ComplaintDetails = () => {
-
+  
+  const dispatch = useDispatch();
   const complaint = useSelector((state) => state?.complaints?.selected_complaint);
+  const resolvers = useSelector((state) => state?.resolvers?.resolvers );
+
+  const [showResolvers, setShowResolvers] = useState(false)
+  console.log("hi",resolvers);
+
+  const handleForwardButton = () => {
+    setShowResolvers(true);
+    alert("This Complaint is Forwarded!")
+    console.log("yes");
+  }
 
   return (
     <div className="bg-[#181818] p-3 rounded-lg shadow-lg mx-6">
@@ -51,9 +62,12 @@ const ComplaintDetails = () => {
         <p className="text-gray-300">{complaint?.urgency}</p>
       </div>
 
-      <div className="p-2">
-        <h3 className="text-xl font-semibold text-[#FF6347]">Created At:</h3>
-        <p className="text-gray-300">{complaint?.timestamps?.createdAt ? new Date(complaint?.timestamps?.createdAt).toLocaleString() : ''}</p>
+      <div className="p-2 flex justify-between items-center">
+        <div className=''>
+          <h3 className="text-xl font-semibold text-[#FF6347]">Created At:</h3>
+          <p className="text-gray-300">{complaint?.timestamps?.createdAt ? new Date(complaint?.timestamps?.createdAt).toLocaleString() : ''}</p>
+        </div>
+        <button className='rounded-md bg-[#FF6347] text-white px-2 py-1' onClick={handleForwardButton}>FORWARD</button>
       </div>
     </div>
   );
