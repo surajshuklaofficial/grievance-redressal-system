@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL: import.meta.env.VITE_REACT_APP_BASE_URL});
+const API = axios.create({baseURL: import.meta.env.VITE_REACT_APP_PRODUCTION_URL});
 
 export const fetchComplaintsByDepartment = (departmentID) => API.get(`/api/v1/department/${departmentID}/admin/dashboard/complaints`);
 export const fetchComplaintsCountByDepartment = (departmentID) => API.get(`/api/v1/department/${departmentID}/admin/dashboard/complaints/count`)

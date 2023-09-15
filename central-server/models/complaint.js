@@ -15,7 +15,7 @@ const complaintSchema = new mongoose.Schema({
       createdAt: { type: Date, default: Date.now },
       closedAt: { type: Date, default: null },
     },
-    realTimeStatus: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ComplaintState' }],
+    realTimeStatus: [],
     urgency: {
       type: String,
       enum: ['LOW', 'MEDIUM', 'HIGH'],

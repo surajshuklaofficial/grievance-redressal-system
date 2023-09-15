@@ -6,9 +6,9 @@ const NLP = async (req, res) => {
   try {
     const departments = await Department.find();
 
-    departments[0].accuracy = 90;
-    departments[1].accuracy = 8;
-    departments[2].accuracy = 2;
+    departments[0].accuracy = 68.6;
+    departments[1].accuracy = 27.2;
+    departments[2].accuracy = 4.2;
 
     console.log(departments);
     res.status(200).json(departments);

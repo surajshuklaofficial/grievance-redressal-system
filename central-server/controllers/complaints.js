@@ -74,9 +74,22 @@ const getComplaintDetails = async (req, res) => {
   }
 };
 
+const complaintCloseRequest = async (req, res) => {
+  try {
+      const complaint = await Complaint.findById(req.params.complaintId);
+      complaint.resolutionStatus = "CLOSED";
+      await complaint.save();
+      res.status(200).json(complaint);
+  } catch (error) {
+    console.error("Error fetching complaints:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 export {
   sendComplaint,
   fetchComplaints,
   getAComplaint,
   getComplaintDetails,
+  complaintCloseRequest
 };
